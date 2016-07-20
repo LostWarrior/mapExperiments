@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+  <head>
+
+  	<style type="text/css" media="screen">
+  		#map-canvas{
+  			height: 500px;
+  		}
+  		
+  	</style>
+
+  	<title> Map Experiment </title>
+
+  	<script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+
+  	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9JNRdCGrMNq0QkCFo-ie62TIXebo2vEw"></script>
+
+	<script src="app.js" type="text/javascript" charset="utf-8" async defer></script>
+	
+  </head>
+
+  <body>
+
+
+  <div id='map-canvas'></div>
+
+  <script>
+
+  	$(document).ready(function(){
+
+	  	var sensors = [
+			['Chesham Station Car Park',51.7058, -0.6108805555555555],
+			['Station Road',51.705675,-0.6121527777777778 ],
+			['High Street North',51.7063278,-0.6120194444444444]
+		]
+
+		
+  		initMap(sensors);
+
+  	})
+  	
+  </script>
+
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9JNRdCGrMNq0QkCFo-ie62TIXebo2vEw&libraries=geometry,visualization"></script> -->
+
+  </body>
+
+</html>
