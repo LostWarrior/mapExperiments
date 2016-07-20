@@ -31,13 +31,73 @@
   	$(document).ready(function(){
 
 	  	var sensors = [
-			['Chesham Station Car Park',51.7058, -0.6108805555555555],
-			['Station Road',51.705675,-0.6121527777777778 ],
-			['High Street North',51.7063278,-0.6120194444444444]
-		]
+  			['Location A',51.7058, -0.6108805555555555],
+  			['Location B',51.705675,-0.6121527777777778 ],
+  			['Location C',51.7063278,-0.6120194444444444]
+		  ]
 
-		
-  		initMap(sensors);
+      var data;
+
+      d3.csv('data.csv')
+        .row(function(d) { return {location: d.location, value: +d.count,path:d.path_id}; })
+        .get(function(error, rows){ data = rows;})
+
+      var styleArray =  [{
+        "featureType": "administrative",
+        "elementType": "all",
+        "stylers": [{
+          "visibility": "off"
+        }]
+                          }, {
+                            "featureType": "administrative.country",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{
+                              "visibility": "on"
+                            }, {
+                              "color": "#F7F5F2"
+                            }, {
+                              "weight": 0.8
+                            }]
+                          }, {
+                            "featureType": "water",
+                            "elementType": "all",
+                            "stylers": [{
+                              "color": "#F7F5F2"
+                            }]
+                          }, {
+                            "featureType": "landscape",
+                            "elementType": "all",
+                            "stylers": [{
+                              "color": '#ddd'
+                              //"color": "#DDD4CB"
+                            }]
+                          }, {
+                            "featureType": "poi",
+                            "elementType": "all",
+                            "stylers": [{
+                              "color": "#DDD4CB"
+                            }]
+                          }, {
+                            "featureType": "road",
+                            "elementType": "all",
+                            "stylers": [{
+                              "visibility": "on"
+                            }]
+                          }, {
+                            "featureType": "transit",
+                            "elementType": "all",
+                            "stylers": [{
+                              "visibility": "off"
+                            }]
+                          }, {
+                            "featureType": "all",
+                            "elementType": "labels",
+                            "stylers": [{
+                              "visibility": "off"
+                            }]
+                        }];
+
+  		initMap(sensors, styleArray,data);
 
   	})
   	

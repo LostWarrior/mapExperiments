@@ -1,0 +1,13 @@
+location,count,path_id
+Location B:Location C,4453,1
+Location B:Location C:Location A,440,1
+Location C:Location B,1999,2
+Location C:Location B:Location A,26,2
+Location A:Location C,1832,3
+Location A:Location C:Location B,353,3
+Location C:Location A,663,4
+Location C:Location A:Location B,15,4
+Location A:Location B,244,5
+Location A:Location B:Location C,108,5
+Location B:Location A,237,6
+Location B:Location A:Location C,49,6
