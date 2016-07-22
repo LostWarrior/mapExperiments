@@ -1,6 +1,4 @@
-function initMap(sensors,styleArray){
-
-	console.log('initmap called');
+function initMap(sensors,styleArray,data){
 
 	var bounds  = new google.maps.LatLngBounds();
 	var infowindow = new google.maps.InfoWindow(); 
@@ -46,27 +44,38 @@ function initMap(sensors,styleArray){
         	marker.enter().append('g')
         		  .attr('class','marker');
 
+        	var markerImage = marker.selectAll('.markerImage')
+        							.data(sensors);
 
-			marker.append("circle")
-		          .attr("r", 4.5)
-		          .attr("cx", function(d,i){
+
+
+			markerImage.enter().append("svg:image")
+				  .attr('xlink:href', "location.png")
+				  .attr({'width': '40px', 'height': '40px','class': 'markerImage'})
+		          .attr("x", function(d,i){
 		          	var coord = transform(d);
-		          	return coord[0];
+		          	return coord[0] - padding;
 		          })
-		          .attr("cy", function(d,i){
+		          .attr("y", function(d,i){
 		          	var coord = transform(d);
-		          	return coord[1];
-		          });
+		          	return coord[1] - padding;
+		          })
+		         
+		    markerImage.on('click', function(d,i){
+        		  	console.log('hey there');
+        		  	d3.event.stopPropagation();
+        		  });
+
 
 
 		    marker.append('text')
 					.attr("x", function(d,i){
 						var coord = transform(d);
-		          		return coord[0] - padding;
+		          		return coord[0] + (padding * 3);
 					})
 					.attr("y",function(d,i){
 						var coord = transform(d);
-		          		return coord[1] + padding * 1.4;
+		          		return coord[1] + (padding * 2);
 					})
 					.attr("dy", ".31em")
 					.text(function(d) { 

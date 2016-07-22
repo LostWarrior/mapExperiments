@@ -30,17 +30,11 @@
 
   	$(document).ready(function(){
 
-	  	var sensors = [
-  			['Location A',51.7058, -0.6108805555555555],
-  			['Location B',51.705675,-0.6121527777777778 ],
-  			['Location C',51.7063278,-0.6120194444444444]
-		  ]
-
-      var data;
-
-      d3.csv('data.csv')
-        .row(function(d) { return {location: d.location, value: +d.count,path:d.path_id}; })
-        .get(function(error, rows){ data = rows;})
+      var sensors = [
+        ['Location A',51.7058, -0.6108805555555555],
+        ['Location B',51.705675,-0.6121527777777778 ],
+        ['Location C',51.7063278,-0.6120194444444444]
+      ]
 
       var styleArray =  [{
         "featureType": "administrative",
@@ -97,7 +91,25 @@
                             }]
                         }];
 
-  		initMap(sensors, styleArray,data);
+      d3.csv('data.csv')
+        .row(function(d) { return {location: d.location, value: +d.count,path:d.path_id}; })
+        .get(function(error, rows){ 
+
+            for(var i in rows){
+
+              var loc = rows[i]['location'];
+
+              var arr = loc.split(":");
+
+              rows[i]['location'] = arr;
+
+            }
+
+            data = rows;
+
+            initMap(sensors, styleArray,data);
+        })
+
 
   	})
   	
